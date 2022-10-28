@@ -1,0 +1,14 @@
+
+#navbar{
+    min-height: 10vh;
+}
+#fondo { 
+    /* background: url("https://raw.githubusercontent.com/Noe1129/Imagenes_blackjack/main/mesa.png") no-repeat center center fixed; */
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+    background: url("https://github.com/Noe1129/Imagenes_farmatown/blob/main/fondoStock4.jpeg?raw=true") no-repeat center fixed; 
+    background-size: cover;
+    height: 100vh;
+}
