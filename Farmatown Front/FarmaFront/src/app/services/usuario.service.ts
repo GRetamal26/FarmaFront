@@ -16,7 +16,8 @@ export class UsuarioService {
   public loggedIn: boolean;
 
 
-  private URLAPI: string = 'https://localhost:7274/api/';
+  private URLAPI: string = 'https://localhost:7187/api/';
+  
 
   constructor(private http: HttpClient) {
     this.isLoggedIn = new Subject<boolean>();

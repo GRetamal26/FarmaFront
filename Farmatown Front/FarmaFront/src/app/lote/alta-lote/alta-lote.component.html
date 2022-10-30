@@ -1,1 +1,34 @@
-<p>alta-lote works!</p>
+<div class="container">
+  
+    <form #form="ngForm">
+      <div class="mb-3">
+        <label for="codigo" class="form-label">Código</label>
+        <input required type="number" class="form-control" id="codigo" name="codigo" >
+      </div>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input required type="text" class="form-control" id="nombre" name="nombre" >
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Telefono</label>
+        <input type="number" class="form-control" id="telefono" name="telefono" >
+      </div>
+      <div class="mb-3">
+        <label for="saldo" class="form-label">Saldo Deudor</label>
+        <input type="number" class="form-control" id="saldo" name="saldo" >
+      </div>
+      <div class="mb-3">
+        <label for="limite" class="form-label">Límite</label>
+        <input type="number" class="form-control" id="limite" name="limite" >
+      </div>
+      <div class="mb-3">
+        <label for="despacho" class="form-label">Despacho</label>
+        <!-- <select class="form-select" aria-label="Default select example" id="despacho" name="despacho" [(ngModel)]="cliente.despacho">
+          <option *ngFor="let despacho of despachos" [ngValue]="despacho.id">{{despacho.nombre}}</option>
+        </select>     -->
+      </div>
+      <button type="submit" class="btn btn-primary" >Aceptar</button> &nbsp;
+      <button type="button" class="btn btn-primary" >Cancelar</button>
+    </form>
+    
+  </div>

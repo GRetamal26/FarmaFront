@@ -15,7 +15,7 @@ export class InicioSesionComponent implements OnInit, OnDestroy {
   //@Output() usuarioLogeado = new EventEmitter<Usuario>();
   formulario: FormGroup;
   enviado:boolean=false;
-  rol: number = 1;
+
   
   private suscripcion = new Subscription();
 
@@ -28,16 +28,15 @@ export class InicioSesionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       usuario: ['', Validators.required],
-      password: ['', Validators.required],
-      rol: [0, Validators.required]
+      password: ['', Validators.required]
     });
   }
 
   enviar() {
     this.enviado=true;
     if (this.formulario.valid ) {      
-      /* this.suscripcion.add(
-        this.usuarioService.obtenerUsuario(new Usuario(this.formulario.value.usuario, this.formulario.value.password, this.formulario.value.rol))
+       this.suscripcion.add(
+        this.usuarioService.obtenerUsuario(new Usuario(this.formulario.value.usuario, this.formulario.value.password))
         .subscribe({
           next: (usuario: Usuario) =>{
            // console.log("TOKEN: ",usuario.token);
@@ -45,15 +44,14 @@ export class InicioSesionComponent implements OnInit, OnDestroy {
             this.usuarioService.darUsuarioID(usuario.idUsuario);           
             this.usuarioService.loguear(usuario);
             this.usuarioService.cambiarEstado(2);
-            this.router.navigate(['/main']);
+            this.router.navigate(['main']);
           },
           error:()=>{            
             this.formulario.setErrors({'invalid':true});
             alert("Verificar cadena de conexión Program.cs => API y cambiar puerto de swagger. // Verificar API encendida.");            
           }
         })
-      ) */
-      alert("todo correcto")
+      )      
     } else {
       alert('formulario invalido')
     }

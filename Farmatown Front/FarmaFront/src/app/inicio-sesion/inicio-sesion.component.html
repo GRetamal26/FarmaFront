@@ -27,22 +27,6 @@
                                 *ngIf="formulario.get('password')?.hasError('required') && formulario.get('password')?.touched" >    
                               <span>Ingrese una contraseña</span>
                             </div>
-                            </div>
-                            <!-- <select class="form-select" formControlName="tipoDespachoId">
-                                <option *ngFor="let despacho of despachos" [value]="despacho.id">
-                                    {{ despacho.nombre }}
-                                </option>
-                            </select> -->
-                            <div class="form-outline mb-4">
-                                <label for="typeRol" class="form-label">Rol</label>
-                                <select class="form-select" id="typeRol" formControlName="rol">
-                                    <option value="1">Gerente</option>
-                                    <option value="2">Encargado</option>                                    
-                                </select>
-                                <div class="text-danger"
-                                *ngIf="formulario.get('password')?.hasError('required') && formulario.get('password')?.touched" >    
-                              <span>Ingrese un rol</span>
-                                </div>
                             </div>                            
                             <div class="text-danger"
                             *ngIf="formulario.invalid && enviado" >    

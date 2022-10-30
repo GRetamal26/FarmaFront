@@ -1,12 +1,13 @@
 export class Usuario {
     idUsuario: number;
     usuario: string;
-    pass: string;
-    rol: number;
-    constructor(usuario: string, pass: string, rol: number) {
+    pwd: string;
+    
+    
+    constructor(usuario: string, pass: string) {
         this.usuario = usuario;
-        this.pass = pass; 
-        this.rol = rol;       
+        this.pwd = pass; 
+              
     }
    
 }
