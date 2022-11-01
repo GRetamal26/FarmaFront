@@ -1,7 +1,6 @@
 export class Articulo {
-    idDetalleLote:number;
-    idLote:number;
-    cantidadComprada:number;
-    precioCompra:number;
+    idArticulo:number;
     nombreArticulo:string;
+    precioUnitario:number;
+
 }

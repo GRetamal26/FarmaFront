@@ -1,4 +1,5 @@
 export class Proveedor {
-    id:string;
-    nombre:string;
+    idProveedor:number;
+    nombreProveedor:string;
+    cuit:number;
 }

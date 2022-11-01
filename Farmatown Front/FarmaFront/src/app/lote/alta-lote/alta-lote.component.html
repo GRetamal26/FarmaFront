@@ -1,6 +1,106 @@
-<div class="container">
-  
-    <form #form="ngForm">
+<div class="container-fluid">
+  <form [formGroup]="formulario">
+    <div class="row">
+      <div class="col-6">Fecha: {{ fechaHoy | date: "dd/MM/yyyy" }}</div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <label for="codigo" class="form-label">Proveedor</label>
+        <select
+          class="form-select selectpicker"
+          data-show-subtext="true"
+          data-live-search="true"
+          id="proveedor"
+          name="proveedor"
+          formControlName="proveedor"
+        >
+          <option
+            *ngFor="let proveedor of proveedores"
+            [ngValue]="proveedor.idProveedor"
+          >
+            {{ proveedor.nombreProveedor }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-4">
+        <label for="codigo" class="form-label">Código</label>
+        <select
+          class="form-select"
+          size="12"
+          aria-label="size 3 select example"
+          name="articulo"
+          formControlName="articulo"
+        >
+          <option
+            *ngFor="let articulo of articulos"
+            [ngValue]="articulo.idArticulo"
+          >
+            {{ articulo.nombreArticulo }} | ${{ articulo.precioUnitario }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-8">
+        <div class="row">
+          <div class="col-2">
+            <label for="codigo" class="form-label">Cantidad</label>
+            <input
+              required
+              type="number"
+              class="form-control"
+              id="codigo"
+              name="codigo"
+            />
+          </div>
+          <div class="col align-self-end">
+            <a class="btn btn-primary btn-md" href="#" role="button">Agregar</a>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="table-responsive">
+            <table class="table table-primary">
+              <thead>
+                <tr>
+                  <th scope="col">Column 1</th>
+                  <th scope="col">Column 2</th>
+                  <th scope="col">Column 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="">
+                  <td scope="row">R1C1</td>
+                  <td>R1C2</td>
+                  <td>R1C3</td>
+                </tr>
+                <tr class="">
+                  <td scope="row">Item</td>
+                  <td>Item</td>
+                  <td>Item</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-auto">
+        <a class="btn btn-primary btn-lg" role="button" (click)="enviarLote()"
+          >Enviar lote</a
+        >
+      </div>
+    </div>
+  </form>
+
+  <!-- <form #form="ngForm">
+
+
+
+
+
       <div class="mb-3">
         <label for="codigo" class="form-label">Código</label>
         <input required type="number" class="form-control" id="codigo" name="codigo" >
@@ -23,12 +123,11 @@
       </div>
       <div class="mb-3">
         <label for="despacho" class="form-label">Despacho</label>
-        <!-- <select class="form-select" aria-label="Default select example" id="despacho" name="despacho" [(ngModel)]="cliente.despacho">
-          <option *ngFor="let despacho of despachos" [ngValue]="despacho.id">{{despacho.nombre}}</option>
+        <select class="form-select" aria-label="Default select example" id="despacho" name="despacho" [(ngModel)]="cliente.despacho"> -->
+  <!-- <option *ngFor="let despacho of despachos" [ngValue]="despacho.id">{{despacho.nombre}}</option>
         </select>     -->
-      </div>
+  <!-- </div>
       <button type="submit" class="btn btn-primary" >Aceptar</button> &nbsp;
       <button type="button" class="btn btn-primary" >Cancelar</button>
-    </form>
-    
-  </div>
+    </form> -->
+</div>
