@@ -43,42 +43,40 @@
         </select>
       </div>
 
-      <div class="col-8">
+      <div class="col-8 align-self-start">
         <div class="row">
           <div class="col-2">
-            <label for="codigo" class="form-label">Cantidad</label>
+            <label for="cantidad" class="form-label">Cantidad</label>
             <input
               required
               type="number"
               class="form-control"
-              id="codigo"
-              name="codigo"
+              id="cantidad"
+              name="cantidad"
+              formControlName="cantidad"
             />
           </div>
           <div class="col align-self-end">
-            <a class="btn btn-primary btn-md" href="#" role="button">Agregar</a>
+            <a class="btn btn-primary btn-md" role="button" (click)="agregar()">Agregar</a>
           </div>
         </div>
         <div class="row mt-2">
           <div class="table-responsive">
-            <table class="table table-primary">
+            <table class="table table-primary table-sm table-responsive table-hover table-striped">
               <thead>
                 <tr>
-                  <th scope="col">Column 1</th>
-                  <th scope="col">Column 2</th>
-                  <th scope="col">Column 3</th>
+                  <th scope="col">Artículo</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio Unitario</th>
+                  <th scope="col">Quitar</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="">
-                  <td scope="row">R1C1</td>
-                  <td>R1C2</td>
-                  <td>R1C3</td>
-                </tr>
-                <tr class="">
-                  <td scope="row">Item</td>
-                  <td>Item</td>
-                  <td>Item</td>
+                <tr *ngFor="let detalle of detallesListado">                  
+                  <td>{{detalle.nombreArticulo}}</td>
+                  <td>{{detalle.cantidadcomprada}}</td>
+                  <td>{{detalle.precioCompra}}</td>
+                  <td style="cursor: pointer;" (click)="quitar(detalle.idArticulo)">❌</td>                
                 </tr>
               </tbody>
             </table>

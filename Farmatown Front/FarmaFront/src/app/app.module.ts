@@ -10,6 +10,10 @@ import { MainComponent } from './main/main.component';
 import { AltaLoteComponent } from './lote/alta-lote/alta-lote.component';
 import { BajaLoteComponent } from './lote/baja-lote/baja-lote.component';
 import { ListadoLoteComponent } from './lote/listado-lote/listado-lote.component';
+import { ArticuloService } from './services/articulo.service';
+import { LoteService } from './services/lote.service';
+import { ProveedorService } from './services/proveedor.service';
+import { UsuarioService } from './services/usuario.service';
 
 @NgModule({
   declarations: [
@@ -25,9 +29,9 @@ import { ListadoLoteComponent } from './lote/listado-lote/listado-lote.component
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ArticuloService, LoteService, ProveedorService, UsuarioService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
