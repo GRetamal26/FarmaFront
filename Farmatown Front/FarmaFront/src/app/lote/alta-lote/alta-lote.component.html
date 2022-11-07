@@ -1,9 +1,13 @@
 <div class="container-fluid">
   <form [formGroup]="formulario">
+   <!--  armar input de fecha -->
+   
     <div class="row">
-      <div class="col-6">Fecha: {{ fechaHoy | date: "dd/MM/yyyy" }}</div>
+      
+      <!-- <div class="col-6">Fecha: {{ fechaVencimiento | date: "dd/MM/yyyy" }}</div> -->
     </div>
     <div class="row">
+      
       <div class="col-4">
         <label for="codigo" class="form-label">Proveedor</label>
         <select
@@ -22,6 +26,10 @@
           </option>
         </select>
       </div>
+      <div class="md-form md-outline input-with-post-icon datepicker col-2" inline="true">
+        <label for="fechaVto" class="form-label">Fecha de Vencimiento</label>
+        <input id="fechaVto" class="form-control" type="date" formControlName="fechaVencimiento">        
+      </div>
     </div>
 
     <div class="row align-items-center">
@@ -38,7 +46,7 @@
             *ngFor="let articulo of articulos"
             [ngValue]="articulo.idArticulo"
           >
-            {{ articulo.nombreArticulo }} | ${{ articulo.precioUnitario }}
+            {{ articulo.nombreArticulo }} 
           </option>
         </select>
       </div>
@@ -54,6 +62,7 @@
               id="cantidad"
               name="cantidad"
               formControlName="cantidad"
+              min="1"
             />
           </div>
           <div class="col align-self-end">

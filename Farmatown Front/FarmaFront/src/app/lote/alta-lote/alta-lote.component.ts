@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DetalleListado } from 'src/app/models/detalle-listado';
 import { LoteService } from 'src/app/services/lote.service';
 import { Detallelote } from 'src/app/models/detallelote';
+import { compileNgModule } from '@angular/compiler';
 
 @Component({
   selector: 'app-alta-lote',
@@ -17,7 +18,7 @@ import { Detallelote } from 'src/app/models/detallelote';
   styleUrls: ['./alta-lote.component.css'],
 })
 export class AltaLoteComponent implements OnInit, OnDestroy {
-  fechaHoy: Date = new Date();
+  
   proveedores: Proveedor[];
   proveedor: Proveedor;
   articulos: Articulo[];
@@ -67,10 +68,11 @@ export class AltaLoteComponent implements OnInit, OnDestroy {
       proveedor: ['', Validators.required],
       articulo: ['', Validators.required],
       cantidad: ['', Validators.required],
+      fechaVencimiento: ['', Validators.required]
     });
   }
 
-  agregar() {
+  agregar() {    
     if (
       this.formulario.value.articulo !== '' &&
       this.formulario.value.cantidad !== ''
@@ -98,13 +100,7 @@ export class AltaLoteComponent implements OnInit, OnDestroy {
     return this.detallesListado.splice(index, 1);
   }
   armarLote() {
-    let fecha: string =
-      this.fechaHoy.getFullYear() + '-' + this.fechaHoy.getMonth() + '-';
-    if (this.fechaHoy.getDay() < 10) {
-      fecha += '0' + this.fechaHoy.getDay();
-    } else {
-      fecha += this.fechaHoy.getDay();
-    }
+    let fecha: string = this.formulario.get('fechaVencimiento')?.value      
     this.lote.fechaLote = fecha;
     let total = 0;
     for (const detalle of this.detallesListado) {
@@ -122,7 +118,8 @@ export class AltaLoteComponent implements OnInit, OnDestroy {
       if (this.detallesListado.length == 0) {
         alert('Debes ingresar artículos!');
         return;
-      } else {
+      }
+      else if(this.formulario.get('fechaVencimiento')!.value) {        
         this.armarLote();
         this.subscription.add(
           this.servicioLote.agregar(this.lote).subscribe({
@@ -138,15 +135,24 @@ export class AltaLoteComponent implements OnInit, OnDestroy {
               for (const detalle of this.detallesLote) {
                 this.servicioLote.agregarDetalle(detalle).subscribe({
                   next: () => {
-                    console.log('enviadooo');
+                    console.log('enviadooo');                    
                     this.detallesListado = [];
                     this.detallesLote = [];
                   },
+                  error: () => {
+                    alert('Error al enviar detalles')
+                    this.detallesListado = [];
+                    this.detallesLote = [];
+                  }
                 });
               }
+              alert('Enviado con exito!');
             },
           })
         );
+      }
+      else{
+        alert("Debe seleccionar una fecha!")
       }
     } else {
       alert('Debe seleccionar un proveedor!');

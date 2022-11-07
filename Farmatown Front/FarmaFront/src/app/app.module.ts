@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { MainComponent } from './main/main.component';
 import { AltaLoteComponent } from './lote/alta-lote/alta-lote.component';
-import { BajaLoteComponent } from './lote/baja-lote/baja-lote.component';
+
 import { ListadoLoteComponent } from './lote/listado-lote/listado-lote.component';
 import { ArticuloService } from './services/articulo.service';
 import { LoteService } from './services/lote.service';
 import { ProveedorService } from './services/proveedor.service';
 import { UsuarioService } from './services/usuario.service';
+import { ReporteComponent } from './reporte/reporte.component';
+
 
 @NgModule({
   declarations: [
@@ -21,8 +23,10 @@ import { UsuarioService } from './services/usuario.service';
     InicioSesionComponent,
     MainComponent,
     AltaLoteComponent,
-    BajaLoteComponent,
+
     ListadoLoteComponent,
+      ReporteComponent,
+  
   ],
   imports: [
     BrowserModule,

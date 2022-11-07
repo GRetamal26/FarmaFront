@@ -1,1 +1,104 @@
-<p>listado-lote works!</p>
+<ul class="nav nav-pills  bg-light justify-content-center">
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <li class="nav-item">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"  (click)="cargarLista()" checked>
+          <label class="btn btn-outline-primary" for="btnradio1">Sin ordenar</label>            
+      </li>
+      <li class="nav-item">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="filtrar()">
+          <label class="btn btn-outline-primary" for="btnradio2">Ordenar por total</label>            
+      </li>             
+  </div>   
+</ul>
+
+<table class="table table-primary table-sm table-responsive table-hover table-striped">
+  <thead>
+    <tr class="text-center">
+      <th scope="col">Fecha</th>
+      <th scope="col">Total</th>
+      <th scope="col">Proveedor</th>
+      <th scope="col">Eliminar</th>
+      <th scope="col">Ver detalles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lote of lotes" class="text-center">
+      <td>{{lote.fechaLote | date: 'dd/MM/yyyy'}}</td>
+      <td>${{lote.total}}</td>
+      <td>{{nombrarProveedor(lote.idProveedor)}}</td>
+      <td style="cursor: pointer;" (click)="quitar(lote.idLote)">❌</td>
+      <td style="cursor: pointer;" (click)="verDetalles(lote.idLote)"><button type="button" class="btn"
+          data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          🔎
+        </button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-light bg-gradient">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Lista de detalles</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="mainForm">
+          <table class="table  table-sm table-responsive table-hover table-striped" formArrayName="tablaDetalles">
+            <thead>
+              <tr>
+                <th scope="col">Articulo</th>
+                <th scope="col">Precio</th>                
+                <th scope="col">Cantidad</th>
+                <th scope="col">Quitar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detalle of detalles; let i = index" [formGroupName]="i">
+                <td>{{getNombreArticulo(detalle.idArticulo)}}</td>
+                <td>${{detalle.precioCompra}}</td>                
+                <td><input formControlName="cantidad" type="number" class="form-control mx-auto" style="width: 7vw;" min="1" (change)="cambioCantidad(detalle.idArticulo!,i)" /></td>
+                <td style="cursor: pointer;" (click)="quitarDetalle(detalle.idArticulo)">❌</td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="guardar()">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <form>
+        <div class="row mt-2">
+          <div>
+            <table class="table table-primary table-sm table-responsive table-hover table-striped">
+              <thead class="text-center">
+                <tr>
+                  <th scope="col">Artículo</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio Unitario</th>
+                  <th scope="col">Quitar</th>
+                  <th scope="col">Modificar</th>
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <tr *ngFor="let detalle of detalles">
+                  <td>{{getNombreArticulo(detalle.idArticulo)}}</td>
+                  <td>{{detalle.cantidadComprada}}</td>
+                  <input type="number" class="form-control mx-auto" style="width: 7vw;" id="cantidad"
+                          name="cantidad"  
+                          [value]="detalle.cantidadComprada">
+                  <td>${{detalle.precioCompra}}</td>
+                  <td style="cursor: pointer;" (click)="quitarDetalle(detalle.idArticulo)">❌</td>
+                  <td>🖍</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form> -->
