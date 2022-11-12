@@ -48,7 +48,7 @@ export class InicioSesionComponent implements OnInit, OnDestroy {
           },
           error:()=>{            
             this.formulario.setErrors({'invalid':true});
-            alert("Verificar cadena de conexión Program.cs => API y cambiar puerto de swagger. // Verificar API encendida.");            
+                       
           }
         })
       )      

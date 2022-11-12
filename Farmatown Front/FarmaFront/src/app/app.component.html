@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse navbarNav" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" *ngIf="isLoggedIn" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Lote
           </a>
           <ul class="dropdown-menu active">
@@ -15,7 +15,7 @@
             <li><a class="dropdown-item" href="#" routerLink="listado">Ver</a></li>            
           </ul>
         </li>
-        <li       class="nav-item">
+        <li  *ngIf="isLoggedIn"     class="nav-item">
           <a class="nav-link active text-dark" routerLink="reporte">Reportes</a>
         </li>
       </ul>   

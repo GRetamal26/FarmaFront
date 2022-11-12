@@ -15,6 +15,7 @@ import { LoteService } from './services/lote.service';
 import { ProveedorService } from './services/proveedor.service';
 import { UsuarioService } from './services/usuario.service';
 import { ReporteComponent } from './reporte/reporte.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -34,6 +35,8 @@ import { ReporteComponent } from './reporte/reporte.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgChartsModule
+    
   ],
   providers: [ArticuloService, LoteService, ProveedorService, UsuarioService],
   bootstrap: [AppComponent],

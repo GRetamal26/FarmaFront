@@ -1,26 +1,29 @@
 <ul class="nav nav-pills  bg-light justify-content-center">
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <li class="nav-item">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"  checked (click)="cambioReporte(1)">
-            <label class="btn btn-outline-primary" for="btnradio1">Articulos a vencer</label>            
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
+                (click)="cambioReporte(1)">
+            <label class="btn btn-outline-primary" for="btnradio1">Articulos a vencer</label>
         </li>
         <li class="nav-item">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="cambioReporte(2)">
-            <label class="btn btn-outline-primary" for="btnradio2">Articulos por año</label>            
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                (click)="cambioReporte(2)">
+            <label class="btn btn-outline-primary" for="btnradio2">Articulos por año</label>
         </li>
         <li class="nav-item">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" (click)="cambioReporte(3)">
-            <label class="btn btn-outline-primary" for="btnradio3">Articulos mas vendidos</label>            
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                (click)="cambioReporte(3)">
+            <label class="btn btn-outline-primary" for="btnradio3">Cosmeticos vendidos</label>
         </li>
         <li class="nav-item">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" disabled>
-            <label class="btn btn-outline-primary" for="btnradio4">Proximamente...</label> 
-        </li>        
-    </div>   
+            <label class="btn btn-outline-primary" for="btnradio4">Proximamente...</label>
+        </li>
+    </div>
 </ul>
 
-<div class="row justify-content-center" [ngSwitch]="reporte"> 
-         
+<div class="row justify-content-center" [ngSwitch]="reporte">
+
     <div class="col-8" *ngSwitchCase="1">
         <table class="table table-primary table-sm table-responsive table-hover table-striped">
             <thead class="text-center">
@@ -55,28 +58,41 @@
             </tbody>
         </table>
     </div>
-    <div class="col-8" *ngSwitchCase="3">
-        <table class="table table-primary table-sm table-responsive table-hover table-striped">
-            <thead class="text-center">
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Fecha</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                <tr *ngFor="let vendido of vendidosxmes">
-                    <td>{{vendido.nombre}}</td>
-                    <td>{{vendido.cantidad}}</td>
-                    <td>{{vendido.fecha}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
+    <form [formGroup]="filtros" class="row justify-content-center">
+        <div class="col-8" *ngSwitchCase="3">
+
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <label for="mes" class="form-label">Mes</label>
+                    <select class="form-select selectpicker" name="mes" id="mes" formControlName="mes" >
+                        <option *ngFor="let mes of meses, let i = index" [ngValue]="i">{{mes}}</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <label for="anio" class="form-label">Año</label>
+                    <select class="form-select selectpicker" name="mes" id="mes" formControlName="anio">
+                        <option *ngFor="let anio of anios" [ngValue]="anio">{{anio}}</option>
+                    </select>
+                </div>
+                <div class="col-2 d-flex align-items-end">
+                    <button class="btn btn-primary" id="filtro" name="filtro" (click)="filtrar()">Filtrar</button>
+                </div>
+            </div>
+            <div style="display: block" *ngIf="datos">
+                <canvas baseChart [data]="datos" [options]="barChartOptions" [plugins]="barChartPlugins"
+                    [type]="barChartType">
+                </canvas>
+            </div>
+            <div style="display: block" class="text-center" *ngIf="!datos && filtrado">
+                <p class="text-center lead " style="color: black; font-size:x-large"><b>No existen resultados</b></p>
+            </div>
+        </div>
+    </form>
+
 </div>
 
-<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+
+<!-- <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -111,9 +127,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<!-- <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -191,3 +207,4 @@
     </div>
 </div>
 
+ -->
